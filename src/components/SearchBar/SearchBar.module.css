@@ -1,0 +1,16 @@
+.divSearchBar {
+    display: flex;
+    height: 40px;
+    
+}
+
+.divSearchBar button{
+    background-color:  rgb(183, 10, 117);
+   border-radius: 0 10px 10px 0;
+   width: 80px;
+   
+}
+.divSearchBar input{
+    border-radius: 10px 0 0 10px;
+    width: 200px;
+}

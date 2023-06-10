@@ -1,0 +1,63 @@
+.divCard {
+    
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 20px;
+    
+    
+    color: white;
+    border-radius: 10px;
+    width: 160px;
+    height: 170px;
+    overflow: hidden;
+    border-radius: 30px;
+  
+    font-size: small;
+    font-family: 'Rampart One', cursive;
+    background-color: #1B2631 ;
+    opacity: .8;
+    transition: .5s ease;
+    
+    
+
+}
+
+  
+.divCard:hover {
+    cursor: crosshair;
+    opacity: 1;
+    width: 200px;
+    height: auto;
+    opacity: 1;
+    filter: contrast(120%);
+    padding: 10px;
+    
+}
+.divImage{
+    position: relative;
+    
+}
+.divImage img {
+    
+    
+    width: 200px;
+    border-radius: 10px
+}
+.botonFav {
+    position:absolute;
+    left: 0;
+    bottom:0;
+    border-radius: 0 10px 10px 0;
+}
+.botonX:hover{
+    background-color: red;
+}
+
+
+.botonX{
+    border-radius: 0 10px 0 10px;
+    position: absolute;
+    right:0px;
+    
+}

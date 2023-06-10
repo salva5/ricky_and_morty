@@ -1,0 +1,7 @@
+.divFav {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    padding: 30px;
+    grid-gap: 50px;
+    max-width: 80vw;
+}
