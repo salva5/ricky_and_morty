@@ -61,7 +61,7 @@ const mapStateToProps = (state) => {
 };
 const mapDispatchToProps = (dispatch) => {
   return {
-    addFav: (personaje) => dispatch(addFav(personaje)),
+    addFav: (character) => dispatch(addFav(character)),
     removeFav: (id) => dispatch(removeFav(id)),
   };
 };
