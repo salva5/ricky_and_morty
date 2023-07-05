@@ -5,7 +5,7 @@ const getCharById = async (req, res) => {
   
   try {
     const { id } = req.params;
-  
+    
     const response  = await axios.get(`${URL}/${id}`)
     const { status, name, species, origin, image, gender } = response.data
 
@@ -25,7 +25,7 @@ const getCharById = async (req, res) => {
   } catch (error) {
     res.status(500).send(error.message);
   }
-    
+  
 };
 
 module.exports = getCharById;
