@@ -1,37 +1,43 @@
 .divCard {
     
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    margin: 20px;
     
     
-    color: white;
-    border-radius: 10px;
-    width: 160px;
+    
+    
+    max-width: 200px;
     height: 170px;
     overflow: hidden;
-    border-radius: 30px;
-  
+    border-radius: 10px;
+    margin: 0 0 30px 0;
+    width:min-content;
+    /* height: 320px; */
     font-size: small;
     font-family: 'Rampart One', cursive;
-    background-color: #1B2631 ;
     opacity: .8;
     transition: .5s ease;
+    box-shadow: 40px 20px 20px 10px rgba(0, 0, 0, 0.696);
     
+    text-align: center;
+    background-color: #f1f1f1;
     
-
 }
+.column {
+   display: table;
+    float: left;
+    width: 25%;
+    padding: 0 10px;
+    
+}
+
 
   
 .divCard:hover {
     cursor: crosshair;
     opacity: 1;
-    width: 200px;
     height: auto;
     opacity: 1;
     filter: contrast(120%);
-    padding: 10px;
+   
     
 }
 .divImage{
@@ -39,8 +45,6 @@
     
 }
 .divImage img {
-    
-    
     width: 200px;
     border-radius: 10px
 }

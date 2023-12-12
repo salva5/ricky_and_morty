@@ -1,47 +1,62 @@
 import { useState } from "react";
 import validation from "../../validation";
 import styles from "./Form.module.css"
+import { NavLink } from "react-router-dom";
+
 const Form = ({login}) => {
-    const [userData, setUserData] = useState({
-        email: "",
-        password:"",
-    })
+  const [userData, setUserData] = useState({
+    email: "",
+    password: ""
+  })
+  const [errors, setErrors] = useState({
+    email: "",
+    password: ""
+  })
+  
+  const handlerChange = (event) => {
+    setUserData({...userData, [event.target.name] : event.target.value})
+    
+    
+  }
 
-    const [errors, setErrors] = useState({})
-
-    const handleChange = (event) => {
-        setUserData({
-            ...userData,
-            [event.target.name]: event.target.value
-            
-        })
-        setErrors(validation({
-            ...userData,
-            [event.target.name]: event.target.value
-            
-        }))  
+  const handlerSubmit =  async (event) => {
+    event.preventDefault();
+    let result = validation({...userData})
+    let response =  await login({...userData}) 
+  
+    if (Object.keys(result).length) {
+      setErrors(result)
     }
-
-    const handleSubmit = (event) => {
-        event.preventDefault()
-        login(userData)
+    else if (response) {
+      setErrors({access : response})
     }
     
-    return (
-        <div  className={styles.divForm}>
-            <form className={styles.form} onSubmit={handleSubmit}>
-                <h1>Login</h1>
-                
-                <input name = "email"type="email" onChange = {handleChange}  value={userData.email} placeholder="Ingrese un email"/>
-                {errors.email && <p>{errors.email}</p>}
-                <br />
-                
-                <input name="password" type="text" onChange ={handleChange} value = {userData.password}placeholder="Ingrese una password"/>
-                {errors.password && <p>{errors.password}</p>}
-                <br />
-                <button>Submit</button>
-            </form>
-        </div>
-    )
+    
+  }
+
+  return (
+    <div className={styles.divForm}>
+      <form className={styles.form}>
+        <h1>login</h1>
+        <input onChange={handlerChange} type="text" name="email" value={userData.email} placeholder="Email"/>
+        {errors.email && <p> <strong>{errors.email}</strong> </p>}
+        
+        <input onChange={handlerChange} type="text" name = "password" value={userData.password} placeholder="Password"/>
+        {errors.password && <p> <strong>{errors.password}</strong> </p>}
+
+        <button onClick={handlerSubmit} type="submit" >Submit</button>
+        {errors.errors && <p> <strong>{errors.errors}</strong></p>}
+
+        {errors.access && <p> <strong>{errors.access}</strong></p>}
+      </form>
+      <h4>No tienes una cuenta?
+        <NavLink to = "register">
+          <p>Crear cuenta</p>
+        </NavLink>
+      </h4>
+    </div>
+  )  
 }
+
+
 export default Form;

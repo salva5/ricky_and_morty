@@ -1,9 +1,14 @@
-.divClass {
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr 1fr;
-    padding: 30px;
-    grid-gap: 50px;
-    max-width: 80vw;
+* {
+    box-sizing: border-box;
+}
+.row {
+   margin-top: 30px; 
+    width: 80%;
+}
+.row:after {
+    content: "";
+    display: table;
+    clear:both;
 }
 
 

@@ -1,68 +1,62 @@
-import style from "./Card.module.css";
-import { addFav, removeFav } from "../../redux/actions";
 import { NavLink } from "react-router-dom";
-import { connect } from "react-redux";
+import { connect } from "react-redux"
+import { addFav, removeFav } from "../../redux/actions";
 import { useState, useEffect } from "react";
+import { useLocation } from "react-router-dom";
+import styles from './Card.module.css';
 
-const Card = ({
-  id,
-  name,
-  status,
-  species,
-  gender,
-  origin,
-  onClose,
-  image,
-  addFav,
-  removeFav,
-  myFavorites,
-}) => {
-  const [isFav, setIsFav] = useState(false);
+
+const Card = ({id, name, status, species, gender, origin, onClose, image,addFav, removeFav, myFavorites}) => {
+ 
+  const [isFav, setIsFav] = useState(false)
+  const {pathname} = useLocation()
   const handleFavorite = () => {
     if (isFav) {
-      setIsFav(false);
-      removeFav(id);
+      setIsFav(false)
+      removeFav(id)
     } else {
-      setIsFav(true);
-      addFav({ id, name, status, species, gender, origin, image });
+
+      setIsFav(true)
+      addFav({id, name, status, species, gender, origin, image})
     }
-  };
+  }
   useEffect(() => {
-    for (let i = 0; i < myFavorites.length; i++) {
-      if (myFavorites[i].id === id) setIsFav(true);
-    }
-  }, [myFavorites, id]);
-
-  const { divCard, divImage, botonFav, botonX } = style;
-
+    myFavorites.forEach((fav) => {
+      if (fav.id === Number(id)) {
+        setIsFav(true);
+      }
+    });
+  },[myFavorites])
   return (
-    <div className={divCard}>
-      <div className={divImage}>
-        <button className={botonFav} onClick={handleFavorite}>
-          {isFav ? "❤️" : " 🤍"}
-        </button>
-        <button className={botonX} onClick={() => onClose(id)}>
-          X
-        </button>
-        <img src={image} alt="" />
+    <div className={styles.column}>
+      <div className={styles.divCard}>
+        <div className={styles.divImage}>
+          {pathname === "/home" && <button className={styles.botonX} onClick={() => onClose(id)}>X</button>}
+          <img src={image} alt={name} />
+          {
+          isFav ? (<button className={styles.botonFav} onClick={handleFavorite}>❤️</button>) 
+          : (<button className={styles.botonFav} onClick={handleFavorite}>🤍</button>)
+        }
+        </div>
+        <NavLink to={`/detail/${id}`}>
+          <h2>{name}</h2>
+        </NavLink>
+        <h2>{species}</h2>
+
       </div>
-      <h2>
-        name: <NavLink to={`/detail/${id}`}>{name} </NavLink>
-      </h2>
-      <h2>status: {status}</h2>
-      <h2>species: {species}</h2>
     </div>
   );
-};
-const mapStateToProps = (state) => {
-  return {
-    myFavorites: state.myFavorites,
-  };
 };
 const mapDispatchToProps = (dispatch) => {
   return {
     addFav: (character) => dispatch(addFav(character)),
-    removeFav: (id) => dispatch(removeFav(id)),
-  };
-};
-export default connect(mapStateToProps, mapDispatchToProps)(Card);
+    removeFav: (id) => dispatch(removeFav(id))
+  }
+}
+const mapStateToProps = (state) => {
+  return {
+    myFavorites: state.myFavorites
+  }
+}
+
+export default connect(mapStateToProps,mapDispatchToProps)(Card);

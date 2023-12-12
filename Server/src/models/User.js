@@ -8,10 +8,15 @@ module.exports = (sequelize) => {
          primaryKey: true,
          autoIncrement: true
       },
+      nombre: {
+         type: DataTypes.STRING,
+         allowNull: false,
+      },
       email: {
          type: DataTypes.STRING,
          allowNull: false,
-         isEmail: true
+         isEmail: true,
+         unique: true
       },
       password: {
          type: DataTypes.STRING,

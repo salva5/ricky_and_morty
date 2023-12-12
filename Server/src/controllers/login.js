@@ -1,16 +1,18 @@
 const { User } = require("../DB_connection");
-
 module.exports = async (req, res) => {
     try {
         const { email, password } = req.query
-        if(!email || ! password ) return res.status(400).send("Faltan datos")
-
-        const user = await User.findOne({where: {email}}) 
-        if(!user) return res.status(404).send("Usuario no encontrado")
-        if(user.password !== password) return res.status(403).send("Contraseña incorrecta")
-        return res.json({access: true})
-
+   
+       if(!email || !password ) return res.status(400).send("Datos incompletos")
+       
+       const user = await User.findOne({where: {email}}) 
+       if(!user) return res.status(404).send("Usuario no encontrado")
+   
+       if(user.password !== password) return res.status(403).send("Contraseña incorrecta")
+       return res.json({access: true})
+    
     } catch (error) {
-        return res.status(500).send(error.message);
+        return res.status(500).send(error.message)
     }
+    
 }
