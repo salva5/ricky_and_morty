@@ -3,13 +3,15 @@ import SearchBar from "../SearchBar/SearchBar"
 import { NavLink,useNavigate,useLocation } from "react-router-dom"
 import styles from "./Nav.module.css"
 
-const Nav = ({onSearch, setCharacters, setAccess, errores, setErrores}) => {
+const Nav = ({onSearch, setCharacters, characters, setAccess, errores, setErrores}) => {
     const {pathname} = useLocation()
     const navigate = useNavigate()
 
     const onRandom = () => {
         const id = Math.floor(Math.random() * 826)  
-        axios(`http://localhost:3002/rickandmorty/character/${Number(id)}`)
+        const prevSearch = characters.findIndex(char => char.id === id)
+        if(prevSearch >= 0) return 
+        axios(`http://localhost:3002/rickandmorty/character/${id}`)
         .then(({data}) =>{
             if(data.name) setCharacters((oldChars) => [...oldChars,data])
             setErrores("")

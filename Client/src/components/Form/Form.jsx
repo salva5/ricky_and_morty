@@ -30,8 +30,6 @@ const Form = ({login}) => {
     else if (response) {
       setErrors({access : response})
     }
-    
-    
   }
 
   return (

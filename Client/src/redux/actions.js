@@ -51,7 +51,6 @@ export const orderCards = (orden) => {
   
 }
 export const register = (user) => {
-  
   return async () => {
     try {
       const { data } = await axios.post(`http://localhost:3002/rickandmorty/login`, user)

@@ -28,13 +28,11 @@ const Register = () => {
       setErrors(result)
     }
     else { 
+      let user = await dispatch(register({...data}))
       
-      let user =  await dispatch(register({...data}))
-      console.log(user);
       if (user.length) {
         navigate("/")
       }
-      console.log(errors);
     }
   }
   return (

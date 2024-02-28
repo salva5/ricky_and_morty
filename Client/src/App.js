@@ -21,11 +21,10 @@ const App = () => {
   const onSearch = async (id) => {
     
     try {
-      const repetida = characters.find(
-        (character) => character.id === Number(id)
-      );
-      const { data } = await axios(`http://localhost:3002/rickandmorty/character/${Number(id)}`)
-      if (data.name && !repetida) {
+      const prevSearch = characters.findIndex(char => char.id === id)
+      if(prevSearch >= 0 || id === 0) return 
+      const { data } = await axios(`http://localhost:3002/rickandmorty/character/${id}`)
+      if (data.name) {
         setCharacters((oldChars) => [...oldChars, data]);
         setErrores("")
       }
@@ -33,11 +32,7 @@ const App = () => {
       
     } catch (error) {
       if(isNaN(id)) setErrores("Solo puedes escribir números")
-      else {
-
-        setErrores("Solo exiten 826 personajes")
-      }
-     
+      if(id > 826) setErrores("Solo exiten 826 personajes")
     }
   };
   const onClose = (id) => {
@@ -73,6 +68,7 @@ const App = () => {
       {
         pathname !== "/"  && pathname !== "/register" && 
         <Nav 
+          characters = {characters}
           setErrores={setErrores}
           errores = {errores}
           onSearch={onSearch} 
