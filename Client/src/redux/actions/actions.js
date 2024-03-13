@@ -1,5 +1,5 @@
 import axios from "axios" 
-import {REMOVE_FAV, ADD_FAV, ORDER, FILTER } from "./types-actions"
+import {REMOVE_FAV, ADD_FAV, ORDER, FILTER } from "../types-actions"
 
 
 export const addFav = (character) => {
@@ -20,10 +20,10 @@ export const addFav = (character) => {
 }
 
 export const removeFav = (id) => {
-  try {
-    const endpoint = `http://localhost:3002/rickandmorty/fav/${id}`
-    
-    return async (dispatch) => {
+  const endpoint = `http://localhost:3002/rickandmorty/fav/${id}`
+  
+  return async (dispatch) => {
+    try {
       
       const {data} = await axios.delete(endpoint)
     
@@ -31,10 +31,12 @@ export const removeFav = (id) => {
         type: REMOVE_FAV,
         payload: data,
       });
+    } catch (error) {
+      console.log(error.message);
     }
-  } catch (error) {
-    console.log(error.message);
   }
+
+  
   
 }
 export const filterCards = (gender) => {
@@ -60,7 +62,4 @@ export const register = (user) => {
     }
 
   }
-
-
-  
 }
