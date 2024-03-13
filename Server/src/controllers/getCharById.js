@@ -10,7 +10,7 @@ const getCharById = async (req, res) => {
     
     if(!data.name) return res.status(404).send("Not found")
     const {status,name,species,origin,image,gender} = data
-   
+
     const character = {
       id: Number(id),
       status,
@@ -21,9 +21,9 @@ const getCharById = async (req, res) => {
       gender
     }
     return res.status(200).json(character)
-   
+
   } catch (error) {
-   
+
     return res.status(500).send(error.message)
   };
 }  

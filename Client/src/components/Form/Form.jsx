@@ -1,9 +1,13 @@
 import { useState } from "react";
 import validation from "../../validation";
 import styles from "./Form.module.css"
-import { NavLink } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
+import { useContext } from "react";
+import { ContextAccess } from "../../context/contextAccess";
 
-const Form = ({login}) => {
+const Form = () => {
+  const { access, login } = useContext(ContextAccess)
+  
   const [userData, setUserData] = useState({
     email: "",
     password: ""
@@ -15,15 +19,13 @@ const Form = ({login}) => {
   
   const handlerChange = (event) => {
     setUserData({...userData, [event.target.name] : event.target.value})
-    
-    
   }
 
   const handlerSubmit =  async (event) => {
     event.preventDefault();
     let result = validation({...userData})
     let response =  await login({...userData}) 
-  
+    
     if (Object.keys(result).length) {
       setErrors(result)
     }

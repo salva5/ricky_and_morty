@@ -1,6 +1,6 @@
 import { useState } from "react";
 import validation from "../../validation";
-import { register } from "../../redux/actions";
+import { register } from "../../redux/actions/actions";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 const Register = () => {
@@ -29,7 +29,6 @@ const Register = () => {
     }
     else { 
       let user = await dispatch(register({...data}))
-      
       if (user.length) {
         navigate("/")
       }
@@ -48,7 +47,7 @@ const Register = () => {
         />
         {errors.nombre && <p> <strong>{errors.nombre}</strong> </p>}
         
-         <input
+        <input
           onChange={handlerData}
           type="text"
           name="email"

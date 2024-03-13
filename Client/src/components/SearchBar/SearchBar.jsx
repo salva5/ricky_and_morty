@@ -1,16 +1,36 @@
 import { useState } from "react";
 import styles from "./SearchBar.module.css"
+import { getCharactersId } from "../../redux/actions/actionsCharacter";
+import { useDispatch, useSelector } from "react-redux";
+import { useEffect } from "react";
 
-const SearchBar = ({ onSearch }) => {
+const SearchBar = () => {
   const [id, setId] = useState("");
+  const [error, setError] = useState("")
+  const dispatch = useDispatch()
+  const { characters } = useSelector(state => state)
+
   const handleChange = (event) => {
-    setId(event.target.value);
+    setId( event.target.value);
   };
+  
 
   const onSubmit = (e) => {
     e.preventDefault();
-    onSearch(Number(id));
+    const NumberId =  Number(id)
+    const prevSearch = characters.findIndex(char => char.id === NumberId)
+    if(prevSearch >= 0 || NumberId === 0 || error) return 
+    
+    dispatch(getCharactersId(NumberId))
   };
+  useEffect(() => {
+    if(isNaN(id)) setError("Solo puedes escribir números")
+    else if(id > 826) setError("Solo exiten 826 personajes")
+    else {
+      setError("")
+    }
+  },[id])
+
   return (
     <div className={styles.divSearchBar}>
       <form onSubmit={onSubmit}>
@@ -36,6 +56,7 @@ const SearchBar = ({ onSearch }) => {
             />
           </svg>
         </button>
+        {error && <p><small style={{color:"red"}}>{error}</small></p>}
       </form>
     </div>
   );

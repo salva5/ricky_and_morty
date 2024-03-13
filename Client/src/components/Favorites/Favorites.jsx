@@ -2,7 +2,7 @@ import { connect } from "react-redux";
 import Card from "../Card/Card";
 import { useDispatch } from "react-redux";
 import { useState } from "react";
-import { filterCards, orderCards } from "../../redux/actions";
+import { filterCards, orderCards } from "../../redux/actions/actions";
 const Favorites = ({myFavorites}) => {
     const [aux, setAux] = useState(false)
     const dispatch = useDispatch()

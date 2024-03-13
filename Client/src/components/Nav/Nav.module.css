@@ -1,20 +1,22 @@
 .divNav {
     margin-top: 10px;
     display: flex;
-    justify-content: space-between;
+    justify-content: space-around;
     padding: 10px;
     background-color: #1B2631;
     align-items: center;
     height: 50px;
-    width: 60%;
+    width: 80%;
     border-radius: 10px;
 }
 
-.botones button{
-    background-color:gray;
-    height: 40px;
-    width: 70px;
-    border-radius: 10px;
-    margin: 10px;
-
+.search {
+    display: flex;
+    gap: 20px;
+}
+.vistas {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 90px;
 }
