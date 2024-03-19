@@ -57,8 +57,8 @@ export const register = (user) => {
     try {
       const { data } = await axios.post(`/rickandmorty/login`, user)
       if(data.length) return data
-    } catch ({response}) {
-      return response.data
+    } catch (error) {
+      console.log(error.message);
     }
 
   }
