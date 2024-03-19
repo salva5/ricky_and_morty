@@ -1,12 +1,13 @@
 const express = require("express");
 const morgan = require("morgan")
-const server = express();
 const routes = require("./routes/index");
-const PORT = 3002;
 const { conn } = require('./DB_connection')
+require("dotenv").config();
+
+const server = express();
+const { PORT } = process.env
 server.use(morgan("dev"))
 server.use(express.json());
-
 server.use((req, res, next) => {
   res.header("Access-Control-Allow-Origin", "*");
   res.header("Access-Control-Allow-Credentials", "true");
