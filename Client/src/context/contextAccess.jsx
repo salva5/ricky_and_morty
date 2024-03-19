@@ -12,7 +12,7 @@ export const ContextAccessProvider = ({children}) => {
   const login = async (userData) => {
     try {
       const { email, password } = userData;
-      const URL = 'http://localhost:3002/rickandmorty/login';
+      const URL = '/rickandmorty/login';
   
       const { data } = await axios(URL + `?email=${email}&password=${password}`)
       const { access } = data;
