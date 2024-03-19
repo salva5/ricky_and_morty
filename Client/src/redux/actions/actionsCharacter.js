@@ -4,7 +4,7 @@ import { DELETE_CHARACTERS, GET_CHARACTERS_ID, REMOVE_CHARACTER } from "../types
 export const getCharactersId = (id) => {
   return async (dispatch) => {
     try {
-      const { data } = await axios(`http://localhost:3002/rickandmorty/character/${id}`);
+      const { data } = await axios(`/rickandmorty/character/${id}`);
       if (data.name) {
         return dispatch({
           type:GET_CHARACTERS_ID,

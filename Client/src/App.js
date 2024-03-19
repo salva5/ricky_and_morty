@@ -10,6 +10,8 @@ import Favorites from "./components/Favorites/Favorites";
 import { useEffect, useContext } from "react";
 import { Routes, Route, useLocation, useNavigate } from "react-router-dom";
 import { ContextAccess } from "./context/contextAccess";
+import axios from "axios";
+axios.defaults.baseURL = "http://localhost:3002/"
 
 
 const App = () => {

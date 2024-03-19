@@ -4,7 +4,7 @@ import {REMOVE_FAV, ADD_FAV, ORDER, FILTER } from "../types-actions"
 
 export const addFav = (character) => {
   
-  const endpoint = 'http://localhost:3002/rickandmorty/fav'
+  const endpoint = '/rickandmorty/fav'
         
   return async (dispatch) => {
     try {
@@ -20,7 +20,7 @@ export const addFav = (character) => {
 }
 
 export const removeFav = (id) => {
-  const endpoint = `http://localhost:3002/rickandmorty/fav/${id}`
+  const endpoint = `/rickandmorty/fav/${id}`
   
   return async (dispatch) => {
     try {
@@ -55,7 +55,7 @@ export const orderCards = (orden) => {
 export const register = (user) => {
   return async () => {
     try {
-      const { data } = await axios.post(`http://localhost:3002/rickandmorty/login`, user)
+      const { data } = await axios.post(`/rickandmorty/login`, user)
       if(data.length) return data
     } catch ({response}) {
       return response.data
