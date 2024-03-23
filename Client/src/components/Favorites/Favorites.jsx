@@ -1,6 +1,6 @@
 import Card from "../Card/Card";
 import { useState } from "react";
-import { filterCards, orderCards } from "../../redux/actions/actions";
+import { orderCards } from "../../redux/actions/actions";
 import { useFavoritesFilters } from "../../hooks/useFavoritesFilters";
 import { useDispatch } from "react-redux";
 const Favorites = () => {

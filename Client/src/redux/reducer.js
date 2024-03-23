@@ -2,7 +2,6 @@ import {
   ADD_FAV,
   REMOVE_FAV,
   ORDER,
-  FILTER,
   GET_CHARACTERS_ID,
   REMOVE_CHARACTER,
   DELETE_CHARACTERS
@@ -11,7 +10,6 @@ import {
 const initialState = {
   characters: [],
   myFavorites: [],
-  copyMyFavorites: [],
 };
 const reducer = (state = initialState, { type, payload }) => {
   switch (type) {
@@ -38,22 +36,11 @@ const reducer = (state = initialState, { type, payload }) => {
       return {
         ...state,
         myFavorites: payload,
-        copyMyFavorites: payload,
       };
     case REMOVE_FAV:
       return {
         ...state,
         myFavorites: payload,
-        copyMyFavorites: payload,
-      };
-    case FILTER:
-      const filtercharacters = state.copyMyFavorites.filter(
-        (char) => char.gender === payload
-      );
-      return {
-        ...state,
-        myFavorites:
-          payload === "Todos" ? [...state.copyMyFavorites] : filtercharacters,
       };
     case ORDER:
       const anotherStateCopy = [...state.myFavorites];
