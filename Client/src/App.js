@@ -11,8 +11,8 @@ import { useEffect, useContext } from "react";
 import { Routes, Route, useLocation, useNavigate } from "react-router-dom";
 import { ContextAccess } from "./context/contextAccess";
 import axios from "axios";
-axios.defaults.baseURL = "http://localhost:3002/"
-
+//axios.defaults.baseURL = "http://localhost:3002/"
+axios.defaults.baseURL = "rickyandmorty-production-6d3b.up.railway.app"
 
 const App = () => {
   const { access } = useContext(ContextAccess)
