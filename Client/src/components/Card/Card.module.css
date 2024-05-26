@@ -54,7 +54,7 @@
     bottom:0;
     border-radius: 0 10px 10px 0;
 }
-.botonX:hover{
+.botonX :hover{
     background-color: red;
 }
 
